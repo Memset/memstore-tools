@@ -74,8 +74,10 @@ class Main(object):
         info, snapshots = self.conn.get_container('miniserver-snapshots', delimiter='/')
 
         for snap in snapshots:
-            if 'subdir' in snap.keys():
-                _, objects = self.conn.get_container('miniserver-snapshots', prefix=snap["subdir"])
+            if 'subdir' not in snap.keys():
+                continue
+
+            _, objects = self.conn.get_container('miniserver-snapshots', prefix=snap["subdir"])
             snap["bytes-used"] = 0
             snap["parts"] = 0
             readme = False
