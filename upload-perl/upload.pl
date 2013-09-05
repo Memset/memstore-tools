@@ -98,7 +98,7 @@ $req->header("X-Auth-Token" => $token);
 
 # sending the file in chunks
 $req->header("Transfer-Encoding" => "chunked");
-$req->header("Content-Length" => -f $filename);
+$req->header("Content-Length" => -s $filename);
 
 # set the content of the request
 open(FD, "<", $filename);
