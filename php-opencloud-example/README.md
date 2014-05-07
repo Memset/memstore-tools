@@ -1,4 +1,6 @@
 This is an example on how to connect to Memstore using php-opencloud.
+
+Tested with php-opencloud 1.9.2.
  
 The auth service description is at:
 

@@ -1,24 +1,23 @@
 <?php
 // This is example.php
 
-require '/path/to/lib/php-opencloud.php';
+require 'vendor/autoload.php';
 
-$conn = new \OpenCloud\OpenStack(
-    'https://auth.storage.memset.com/v2.0',
+use OpenCloud\OpenStack;
+
+$client = new OpenStack(
+    'https://external-cloudstorage-dev1.bofhs.net/v2.0',
     array(
         'username' => 'admin',
-        'password' => 'PASSWORD',
+		'password' => 'YOUR-PASSWORD',
         'tenantName' => 'YOUR-MEMSTORE' // ie. mstestaa1
     ));
 
+$service = $client->objectStoreService("memstore", "reading");
 
-$ostore = $conn->ObjectStore("memstore", "reading", "publicURL");
-
-$containerlist = $ostore->ContainerList();
-while($container = $containerlist->Next()) {
-    # listing the containers
-    printf("Container %s has %u bytes\n", $container->name,
-$container->bytes);
+$containers = $service->listContainers();
+foreach ($containers as $container) {
+    printf("Container name: %s\n", $container->getName());
 }
 
 ?>
