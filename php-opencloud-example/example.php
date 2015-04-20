@@ -6,7 +6,7 @@ require 'vendor/autoload.php';
 use OpenCloud\OpenStack;
 
 $client = new OpenStack(
-    'https://external-cloudstorage-dev1.bofhs.net/v2.0',
+    'https://auth-host.local/v2.0',
     array(
         'username' => 'admin',
 		'password' => 'YOUR-PASSWORD',
